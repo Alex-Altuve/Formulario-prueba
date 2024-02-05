@@ -1,0 +1,13 @@
+###
+
+GET http://localhost:9000/departamento_ruta/Buscar
+
+###
+POST http://localhost:9000/departamento_ruta/Insertar
+Content-Type: application/json
+
+{
+    "nombre":"Textileria",
+    "localidad": "Caracas",
+    "correo": "textil@gmail.com"
+}
