@@ -1,13 +1,27 @@
-
 import { departamento } from '../Model/departamento.js';
 /*import {Empleado} from '../Model/empleado.js';*/
 
  (function() {
       switch (document.body.id){
             case  'Departamento':
-               console.log('entro1')
+
+
+          console.log('entro1')
               const boton = document.getElementById('Boton_Departamento'); 
               const dept= new departamento();
+              const ad= dept.ValidarNombre('Juanitos')
+              const a= dept.obtenerDatosDeTabla();
+              console.log(a)
+
+              a.then( (data)=>{
+
+               console.log(data)
+
+              }
+
+              ) 
+
+
               boton.addEventListener('click', function(event) {
                   event.stopPropagation(); // Detiene la propagación del evento
                   event.preventDefault(); // Previene el comportamiento predeterminado del evento
@@ -24,12 +38,12 @@ import { departamento } from '../Model/departamento.js';
                      let numero = parseInt(numeros[2]);
                      if(confirm("Seguro que desea insertar este departamento?")){
                         dept.IngresarDatosObjeto(nombre,  localidad, correo, telefono);
+                        console.log("///////////////////////////////////")
                         console.log(dept.ValidarNombre(dept.Nombre))
-                        if(dept.ValidarNombre(dept.Nombre)==false){
-                         
-                         // dept.IngresarDatosDepartamento(dept);
-                        }
-                         
+                        dept.ValidarNombre(dept.Nombre).then((valor)=>{
+                              if(valor) alert('puto')
+                              else alert('no eres puto ')
+                        })     
                      }
  
                      

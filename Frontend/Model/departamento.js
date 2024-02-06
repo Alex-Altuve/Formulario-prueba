@@ -54,7 +54,7 @@ export class departamento{
         try {
             const response = await fetch("http://localhost:9000/departamento_ruta/Buscar");
             const data = await response.json();
-            return data; // Retorna los datos obtenidos
+            return data;
         } catch (error) {
             console.error("Error al obtener los datos:", error);
             return []; // Manejo de errores: retorna un arreglo vacío
@@ -64,19 +64,24 @@ export class departamento{
 
     async ValidarNombre(nombre) {
         try {
-            const datosTabla = await this.obtenerDatosDeTabla();
-            for (const itemusuario of datosTabla) {
+            const datosTabla =  this.obtenerDatosDeTabla();
+            let contador=0;
+            await datosTabla.then((datos)=>{
+                for (const itemusuario of datos) {
                 if (nombre.localeCompare(itemusuario.nombre) === 0) {
-                    return true;
+                    console.log('entraa')
+                    contador=contador+2;
                 }
-            }
-            return false;
+                }
+            })
+            return (contador==0);
         } catch (error) {
             console.error("Error al obtener datos de la tabla:", error);
             return false; // Manejar el error según tus necesidades
         }
     }
     
+
     
     IngresarDatosDepartamento(departamento){
         console.log('entro')
