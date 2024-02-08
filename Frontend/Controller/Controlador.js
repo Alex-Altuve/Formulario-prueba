@@ -25,12 +25,11 @@ import {empleado} from '../Model/empleado.js';
 
                      if(confirm("Seguro que desea insertar este departamento?")){
                          dept.IngresarDatosObjeto(nombre,  localidad, correo, telefono);
-                        dept.ValidarNombre(nombre).then((valor)=>{
+                        dept.ValidarNombre(dept.Nombre).then((valor)=>{
                               if(valor){
-                                  
                                    dept.IngresarDatosDepartamento(dept,codInt, codArea,numero);
                               }else{
-                                   alert('No puede registrar un departamento que ya este registrado (no puede repetirse) ')
+                                   alert('No puede registrar un departamento que ya este registrado (no puede repetirse)')
                               } 
                         })     
                      }
@@ -72,7 +71,7 @@ import {empleado} from '../Model/empleado.js';
                          let numero = parseInt(numeros[2]);
                          if(confirm("Seguro que desea insertar este departamento?")){   
                               emple.IngresarValorObtjeto(parseInt(DI),primerN,segundoN, primerA, segundoA, direccion,fecha_nac,correo);
-                              emple.ValidarDI(DI).then((valor)=>{
+                              emple.ValidarDI(parseInt(DI)).then((valor)=>{
                                    if(valor){
                                         emple.IngresarDatosEmpleado(emple,codInt,codArea, numero,cadena);
                                    }else{

@@ -55,7 +55,7 @@ app.post('/Insertar', async (req, res) => {
       datos.deptnumero,
     ]);
 
-    res.json(result.rows[0].deptnumero);
+    res.json('Se ingreso el empleado');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error interno del servidor al insertar datos');

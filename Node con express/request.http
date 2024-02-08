@@ -7,7 +7,7 @@ POST http://localhost:9000/departamento_ruta/Insertar
 Content-Type: application/json
 
 {
-    "nombre":"Textileria",
+    "nombre":"Puto",
     "localidad": "Caracas",
     "correo": "textil@gmail.com"
 }
@@ -35,4 +35,27 @@ Content-Type: application/json
     "fecha_nacimiento": "2003-07-07",
     "correo": "textil@gmail.com",
     "deptnumero": 4
+}
+
+###
+
+POST http://localhost:9000/empleado_ruta/InsertarTelefono
+Content-Type: application/json
+
+{
+    "codigoint": 32,
+    "codarea":123,
+    "numero": 123456,
+    "di_empleado": 10800808
+}
+###
+
+POST http://localhost:9000/departamento_ruta/InsertarTelefono
+Content-Type: application/json
+
+{
+    "codigoint": 32,
+    "codarea":123,
+    "numero": 1235766,
+    "deptnumero": 16
 }

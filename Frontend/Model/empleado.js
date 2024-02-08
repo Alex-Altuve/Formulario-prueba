@@ -145,8 +145,8 @@
         })
             .then(response => response.json())
             .then(data => {
-              alert("Funciono el ingreso del empleado")
-              // this.InsertarDatosTelefono(codInt, codArea, numero, empleado.documento_identidad);    
+             console.log("Funciono el registro del empleado")
+              this.InsertarDatosTelefono(codInt, codArea, numero, empleado.documento_identidad);    
             })
             .catch(error => {
               console.error('Error al agregar al empleado ingresado:', error);

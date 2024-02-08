@@ -83,7 +83,6 @@ export class departamento{
 
     
     IngresarDatosDepartamento(departamento, ci, ca, num){
-        console.log('entro')
         fetch('http://localhost:9000/departamento_ruta/Insertar', {
             method: 'POST',
             headers: {
@@ -98,7 +97,7 @@ export class departamento{
         })
             .then(response => response.json())
             .then(data => {
-            alert("Funciono el ingreso del departamentop")
+              
               this.InsertarDatosTelefono(ci,ca,num,data)
     
             })
