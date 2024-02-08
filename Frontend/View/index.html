@@ -33,22 +33,22 @@
       <form class="row g-4">
         
         <div class="col-md-5">
-            <label for="NombreEmpleado" class="form-label">Primer Nombre</label>
-            <input type="text" id="NombreEmmpleado" class="form-control" placeholder="ej. Justin" required>
+            <label for="Pnombre" class="form-label">Primer Nombre</label>
+            <input type="text" id="Pnombre" class="form-control" placeholder="ej. Justin" required>
           </div>
 
           <div class="col-md-5">
-            <label for="NombreEmpleado" class="form-label">Primer Apellido</label>
-            <input type="text" id="NombreEmmpleado" class="form-control" placeholder="ej. Rojas" required>
+            <label for="Papellido" class="form-label">Primer Apellido</label>
+            <input type="text" id="Papellido" class="form-control" placeholder="ej. Rojas" required>
           </div> 
           <div class="col-md-5">
-            <label for="NombreEmpleado2" class="form-label">Segundo Nombre</label>
-            <input type="text" id="NombreEmpleado2" class="form-control" placeholder="ej. Jose" required>
+            <label for="Snombre" class="form-label">Segundo Nombre</label>
+            <input type="text" id="Snombre" class="form-control" placeholder="ej. Jose" required>
           </div>
 
           <div class="col-md-5">
-            <label for="ApellidoEmpleado2" class="form-label">Segundo Apellido</label>
-            <input type="text" id="ApellidoEmpleado2" class="form-control" placeholder="ej. Perez" required>
+            <label for="Sapellido" class="form-label">Segundo Apellido</label>
+            <input type="text" id="Sapellido" class="form-control" placeholder="ej. Perez">
           </div> 
           
           <div class="col-md-5">
@@ -56,23 +56,10 @@
             <input type="text"  id="DIempleado" class="form-control" placeholder="ej. 29828497"  required>
           </div>
           
-          <div class="col-md-2">
-            <label for="CheckBoxInt" class="form-label">Número Internacional</label>
-            <select class="form-select" id="CheckBoxInt" required>
-              <option selected disabled value="">Choose...</option>
-            </select>
-        </div>
-          <div class="col-md-2">
-            <label for="CheckBoxArea" class="form-label">Número area</label>
-            <select class="form-select" id="CheckBoxArea" required>
-              <option selected disabled value="">Choose...</option>
-            </select>
-        </div>
-       
-        <div class="col-md-33">
-          <label for="DireccionEmpleado"  class="form-label">Numero tlf</label>
-          <input type="text" id="DireccionEmpleado" class="form-control"  placeholder="ej. 2075537" id="validationDefault05" required>
-        </div>
+          <div class="col-md-5">
+            <label for="TelefonoEmpleado" class="form-label">Teléfono</label>
+            <input type="text"  id="TelefonoEmpleado" class="form-control" placeholder="ej. +34 902 123904"  required>
+          </div>
 
         <div class="col-md-5">
           <label for="DireccionEmpleado"  class="form-label">Dirección</label>
@@ -88,15 +75,39 @@
 
         <div class="col-md-5">
             <label for="CorreoEmpleado" class="form-label">Correo Electrónico</label>
-            <input type="email" class="form-control" id="CorreoEmpleado" required>
+            <input type="email" class="form-control" id="CorreoEmpleado" required placeholder="correo@gmail.com"" >
           </div>
 
+          <div class="col-md-5">
+            <label for="CheckBoxDepartamento" class="form-label">Departamento</label>
+            <select class="form-select" id="CheckBoxDepartamento" required>
+              <option selected disabled value="">Choose...</option>
+            </select>
+        </div>
             <div class="col-10">
-            <button type="button submit" id="Boton_bodega" class="btn btn-primary">Registrar</button>
+            <button type="button submit" id="Boton_empleado" class="btn btn-primary">Registrar</button>
           </div>
         
     </form>
-      
+    <div class="tabla_contenedor">
+      <center><h3>TABLA DE EMPLEADOS REGISTRADOS</h3></center>
+      <table id="table-empleados">
+         <thead>
+          <th>DI</th>
+          <th>Primer Nombre</th>
+          <th>Segundo Nombre</th>
+          <th>Primer Apellido</th>
+          <th>Segundo Apellido</th>
+          <th>Fecha de Nacimiento</th>
+          <th>Direccion</th>
+          <th>Correo</th>
+          <th>Dept</th>
+         </thead>
+         <tbody>         
+         </tbody>
+      </table>
+   </div>
+
     <style>
         .navbar{
             background-color: #A9957C;
@@ -125,6 +136,25 @@
         }
         .row{
             margin: 20px;
+        }
+        table{
+          width: 100%;
+        }
+        table td{
+          padding: 5px;
+        }
+        table thead{
+          background-color: #085078;
+          color:#fff
+        }
+        table tbody tr:nth-child(even){
+          background-color: #d9dceb;
+        }
+        .tabla_contenedor{
+            padding: 10px;
+            width: 90%;
+            margin: auto;
+            border-radius: 0.5em;
         }
        
     </style>

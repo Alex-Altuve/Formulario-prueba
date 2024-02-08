@@ -1,27 +1,12 @@
 import { departamento } from '../Model/departamento.js';
-/*import {Empleado} from '../Model/empleado.js';*/
+import {empleado} from '../Model/empleado.js';
 
  (function() {
       switch (document.body.id){
-            case  'Departamento':
-
-
-          console.log('entro1')
+          case  'Departamento':
+              llenartabla();
               const boton = document.getElementById('Boton_Departamento'); 
               const dept= new departamento();
-              const ad= dept.ValidarNombre('Juanitos')
-              const a= dept.obtenerDatosDeTabla();
-              console.log(a)
-
-              a.then( (data)=>{
-
-               console.log(data)
-
-              }
-
-              ) 
-
-
               boton.addEventListener('click', function(event) {
                   event.stopPropagation(); // Detiene la propagación del evento
                   event.preventDefault(); // Previene el comportamiento predeterminado del evento
@@ -29,20 +14,24 @@ import { departamento } from '../Model/departamento.js';
                   let localidad = document.getElementById('DireccionDepartamento').value;
                   let correo = document.getElementById('CorreoDepartamento').value;
                   let telefono =  document.getElementById('TelefonoDepartamento').value;
+
+
                   if(dept.ValidarCamposVacios(nombre, localidad, correo,telefono)== 0){
-                    console.log('entro2')
                      //para separar el numero de telefono
                      let numeros = telefono.split(" ");
                      let codInt = parseInt(numeros[0].replace("+", ""));
                      let  codArea= parseInt(numeros[1]);
                      let numero = parseInt(numeros[2]);
+
                      if(confirm("Seguro que desea insertar este departamento?")){
-                        dept.IngresarDatosObjeto(nombre,  localidad, correo, telefono);
-                        console.log("///////////////////////////////////")
-                        console.log(dept.ValidarNombre(dept.Nombre))
-                        dept.ValidarNombre(dept.Nombre).then((valor)=>{
-                              if(valor) alert('puto')
-                              else alert('no eres puto ')
+                         dept.IngresarDatosObjeto(nombre,  localidad, correo, telefono);
+                        dept.ValidarNombre(nombre).then((valor)=>{
+                              if(valor){
+                                  
+                                   dept.IngresarDatosDepartamento(dept,codInt, codArea,numero);
+                              }else{
+                                   alert('No puede registrar un departamento que ya este registrado (no puede repetirse) ')
+                              } 
                         })     
                      }
  
@@ -51,6 +40,49 @@ import { departamento } from '../Model/departamento.js';
                    
                })
           break;
+          case 'Empleado':
+               const boton_emp = document.getElementById('Boton_empleado'); 
+               const dept2= new departamento();
+               const CheckBoxDept = document.getElementById('CheckBoxDepartamento');
+               const emple = new empleado();
+               ///llenar el combo box
+               dept2. BuscarDatosDept(LLenarCheckBoxDepartamento);
+               llenartablaEmp();
+
+               boton_emp.addEventListener('click', function(event) {
+                   event.stopPropagation(); // Detiene la propagación del evento
+                   event.preventDefault(); // Previene el comportamiento predeterminado del evento
+
+                   let cadena = parseInt(CheckBoxDept.value);
+                   let primerN = document.getElementById('Pnombre').value;
+                   let segundoN = document.getElementById('Snombre').value;
+                   let primerA = document.getElementById('Papellido').value;
+                   let segundoA = document.getElementById('Sapellido').value;
+                   let DI = document.getElementById('DIempleado').value;
+                   let telefono =document.getElementById('TelefonoEmpleado').value;
+                   let  fecha_nac = document.getElementById('FechaNacEmpleado').value;
+                   let correo = document.getElementById('CorreoEmpleado').value;
+                   let direccion =document.getElementById('DireccionEmpleado').value;
+                   
+                   if(emple.ValidarCamposTextos(DI,primerN,segundoN, primerA, segundoA, direccion, correo, telefono,cadena)==0){
+                         //para separar el numero de telefono
+                         let numeros = telefono.split(" ");
+                         let codInt = parseInt(numeros[0].replace("+", ""));
+                         let  codArea= parseInt(numeros[1]);
+                         let numero = parseInt(numeros[2]);
+                         if(confirm("Seguro que desea insertar este departamento?")){   
+                              emple.IngresarValorObtjeto(parseInt(DI),primerN,segundoN, primerA, segundoA, direccion,fecha_nac,correo);
+                              emple.ValidarDI(DI).then((valor)=>{
+                                   if(valor){
+                                        emple.IngresarDatosEmpleado(emple,codInt,codArea, numero,cadena);
+                                   }else{
+                                        alert('No puede registrar un empleado que ya este registrado (no puede repetirse) ')
+                                   } 
+                              })   
+                         }    
+                   }
+               })
+          break;     
       }
  })();
 
@@ -67,6 +99,34 @@ import { departamento } from '../Model/departamento.js';
        })
  }
 
- llenartabla()
 
+
+
+ function llenartablaEmp(){
+     fetch("http://localhost:9000/empleado_ruta/Buscar")
+          .then((response)=>response.json())
+          .then((empleadoD)=>{
+               let tablaemp = document.querySelector("#table-empleados tbody");
+               for(const itemusuario  of empleadoD){
+                 let tr= "<tr> <td>" + itemusuario.documento_identidad + "</td><td>" + itemusuario.primernombre + "</td><td>"+itemusuario.segundonombre +"</td><td>" + itemusuario.primerapellido + "</td><td>"+itemusuario.segundoapellido + "</td><td>"+itemusuario.direccion+"</td><td>"+itemusuario.fecha+"</td><td>"+itemusuario.correo +"</td><td>"+itemusuario.deptnumero+"</td></tr>"
+                 tablaemp.innerHTML +=tr
+               }
+          })
+    }
    
+
+      
+/////////// Check box Region////////////
+
+function LLenarCheckBoxDepartamento(data,id){
+
+     const selectElement = document.getElementById(id);
+     
+         data.forEach(item =>{
+             const option = document.createElement("option");
+             option.text = item.nombre;
+             option.value = item.deptnumero; 
+             selectElement.appendChild(option);
+         });
+     }
+     

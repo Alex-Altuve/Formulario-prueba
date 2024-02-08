@@ -11,3 +11,28 @@ Content-Type: application/json
     "localidad": "Caracas",
     "correo": "textil@gmail.com"
 }
+
+###
+
+GET http://localhost:9000/empleado_ruta/Buscar
+
+
+###
+
+GET http://localhost:9000/empleado_ruta/BuscarNombre
+
+###
+POST http://localhost:9000/empleado_ruta/Insertar
+Content-Type: application/json
+
+{
+    "documento_identidad":30210543,
+    "primernombre": "Jose",
+    "segundonombre": "Luis",
+    "primerapellido": "Moncada",
+    "segundoapellido": "Perez",
+    "direccion": "Caracas",
+    "fecha_nacimiento": "2003-07-07",
+    "correo": "textil@gmail.com",
+    "deptnumero": 4
+}

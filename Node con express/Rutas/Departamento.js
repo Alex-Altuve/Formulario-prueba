@@ -48,13 +48,14 @@ app.post('/Insertar', async (req, res) => {
 app.post('/InsertarTelefono', async (req, res) => {
   const datos = req.body;
   try {
-    const query = ` insert into telefono (deptnumero,codigoint, codarea, numero)
-                   VALUES ($1, $2, $3, $4, $5, $6)`;
+    const query = ` insert into telefono (codigoint, codarea, numero, deptnumero)
+                   VALUES ($1, $2, $3, $4)`;
      result= await pool.query(query, [
-      datos.deptnumero,
-      datos.CI,
-      datos.CA,
-      datos.Numero
+      datos.codigoint,
+      datos.codarea,
+      datos.numero,
+      datos.deptnumero
+      
     ]);
 
     res.json('Se ingreso el numero de telefono de la empresa');

@@ -69,8 +69,7 @@ export class departamento{
             await datosTabla.then((datos)=>{
                 for (const itemusuario of datos) {
                 if (nombre.localeCompare(itemusuario.nombre) === 0) {
-                    console.log('entraa')
-                    contador=contador+2;
+                    contador=contador+1;
                 }
                 }
             })
@@ -83,9 +82,9 @@ export class departamento{
     
 
     
-    IngresarDatosDepartamento(departamento){
+    IngresarDatosDepartamento(departamento, ci, ca, num){
         console.log('entro')
-        fetch('http://localhost:9001/departamento_ruta/Insertar', {
+        fetch('http://localhost:9000/departamento_ruta/Insertar', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -99,8 +98,8 @@ export class departamento{
         })
             .then(response => response.json())
             .then(data => {
-    
-              this.InsertarDatosTelefono(departamento,ci,ca,num,data)
+            alert("Funciono el ingreso del departamentop")
+              this.InsertarDatosTelefono(ci,ca,num,data)
     
             })
             .catch(error => {
@@ -109,17 +108,17 @@ export class departamento{
     }
     
     InsertarDatosTelefono(ci,ca,num, fkdeptnumero){
-        fetch('http://localhost:9001/departamento_ruta/InsertarTelefono', {
+        fetch('http://localhost:9000/departamento_ruta/InsertarTelefono', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({
               // Aqui se indican los valores de cada parametro que se va a insertar 
-                codigoint: ci,
+              codigoint: ci,
                 codarea: ca,
-                numero: num,
-                deptnumero: fkdeptnumero
+                numero: num,  
+                deptnumero: fkdeptnumero             
             })
         })
             .then(response => response.json())
@@ -129,8 +128,27 @@ export class departamento{
     
             })
             .catch(error => {
-              console.error('Error al agregar el numero del departamento ingresado:', error);
+              console.error('Error al agregar el numero de tlf del departamento ingresado:', error);
             });
     }
    
+
+    //////Buscar los departamentos
+    BuscarDatosDept(FuncionCheckbox) {
+        fetch('http://localhost:9000/empleado_ruta/BuscarDepartamento', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then(response => response.json())
+          .then(data => {
+           
+            FuncionCheckbox(data,'CheckBoxDepartamento');
+               
+          })
+          .catch(error => {
+            console.error('Error al obtener los datos:', error);
+          });
+      }
 }
