@@ -4,7 +4,7 @@
 - Para descargar algun paquete  o descargar los paquetes que ya esten inicializados en el json que necesites se usa **npm install**
 - Para iniciar el proyecto se usa **npm start**
 
-## Iniciando Proyecto
+## Iniciando Proyecto - Back
 
 Dentro del directorio de nuestro proyecto ingresamos el siguiente comando para iniciar el proyecto de node.js:
 
@@ -30,6 +30,11 @@ npm i cors dotenv multer express nodemon pg pg-pool -S
 - `express`: Se utiliza para crear aplicaciones web de todo tipo, desde simples APIs REST hasta aplicaciones web completas con enrutamiento, middleware y plantillas.
 - `nodemon`: reinicia automáticamente el servidor Node.js cuando detecta cambios en los archivos del proyecto.
 
+
+```txt
+npm init -y
+```
+
 ```
 {
   "scripts": {
@@ -39,3 +44,11 @@ npm i cors dotenv multer express nodemon pg pg-pool -S
 ```
 **npm run dev**
 
+
+## Iniciando Proyecto - Front
+
+```txt
+npm i http-server -S
+```
+
+- `http-server`: es una herramienta sencilla que te permite crear un servidor web local de manera rápida. Imagina que tienes una carpeta con archivos HTML, CSS y JavaScript para tu sitio web. 
