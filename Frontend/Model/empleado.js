@@ -103,7 +103,7 @@
         console.error("Error al obtener los datos:", error);
         return []; // Manejo de errores: retorna un arreglo vacío
     }
-}
+  }
 
 
   async ValidarDI(DI) {
